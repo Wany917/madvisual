@@ -14,7 +14,7 @@ export default function Home() {
           loop
           playsInline
           poster="/photos/portrait.png"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover dark:opacity-70"
         >
           <source src="/videos/hero-reel.mp4" type="video/mp4" />
         </video>
