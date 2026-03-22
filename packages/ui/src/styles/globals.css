@@ -145,6 +145,8 @@
   }
   html {
     @apply font-sans scroll-smooth overflow-x-hidden;
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
   }
 
   /* Cinematic selection */

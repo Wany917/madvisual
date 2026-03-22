@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   title: "MADVISUAL | Photography & Visual Arts",
   description:
     "Portfolio de photographie — Capturer l'essence de la vie urbaine à travers un regard cinématographique.",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
 };
 
 export default function RootLayout({
