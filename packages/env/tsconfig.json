@@ -1,0 +1,3 @@
+{
+  "extends": "@madvisual/config/tsconfig.base.json"
+}
