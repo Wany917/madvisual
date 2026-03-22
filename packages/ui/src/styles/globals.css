@@ -169,6 +169,92 @@
   }
 }
 
+/* ═══ Scroll reveal animations ═══ */
+.reveal {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-up {
+  transform: translateY(40px);
+}
+
+.reveal-down {
+  transform: translateY(-40px);
+}
+
+.reveal-left {
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  transform: translateX(40px);
+}
+
+.reveal-fade {
+  transform: none;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+/* Hero entrance — staggered on load */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-hero-1 {
+  animation: hero-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+@utility animate-hero-2 {
+  animation: hero-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+@utility animate-hero-3 {
+  animation: hero-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+}
+
+/* Subtle zoom for hero video */
+@keyframes slow-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+@utility animate-slow-zoom {
+  animation: slow-zoom 20s ease-out forwards;
+}
+
+/* Line expand for section headers */
+@keyframes line-expand {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.reveal.is-visible .line-expand {
+  animation: line-expand 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+  transform-origin: left;
+}
+
 /* Scroll indicator animation */
 @keyframes scroll-line {
   0% {

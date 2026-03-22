@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SESSION_TYPES, PORTFOLIO_ITEMS } from "@/lib/mock-data";
+import Reveal from "@/components/reveal";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
           loop
           playsInline
           poster="/photos/portrait.png"
-          className="absolute inset-0 w-full h-full object-cover dark:opacity-70"
+          className="absolute inset-0 w-full h-full object-cover dark:opacity-70 animate-slow-zoom"
         >
           <source src="/videos/hero-reel.mp4" type="video/mp4" />
         </video>
@@ -24,17 +25,17 @@ export default function Home() {
 
         {/* Contenu hero — bas de l'écran */}
         <div className="relative z-10 pb-28 md:pb-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
-          <h1 className="font-serif text-4xl md:text-6xl text-white font-medium leading-tight tracking-tight">
+          <h1 className="font-serif text-4xl md:text-6xl text-white font-medium leading-tight tracking-tight animate-hero-1">
             Photography
             <br />
             <span className="font-light text-white/80">&amp; Direction</span>
           </h1>
-          <p className="mt-4 text-sm md:text-base text-white/50 tracking-[0.15em] uppercase">
+          <p className="mt-4 text-sm md:text-base text-white/50 tracking-[0.15em] uppercase animate-hero-2">
             Paris &middot; Portraits &middot; Moments
           </p>
           <Link
             href="/booking"
-            className="inline-block mt-8 border border-white/40 text-white text-xs uppercase tracking-[0.3em] px-8 py-3 hover:bg-white hover:text-black transition-all duration-300"
+            className="inline-block mt-8 border border-white/40 text-white text-xs uppercase tracking-[0.3em] px-8 py-3 hover:bg-white hover:text-black transition-all duration-300 animate-hero-3"
           >
             Réserver une séance
           </Link>
@@ -51,15 +52,17 @@ export default function Home() {
       {/* ═══ SELECTED WORKS — Spreads éditoriaux ═══ */}
       <section id="works" className="py-32 md:py-44">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex items-center gap-6 mb-6">
-            <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
-              II
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-medium whitespace-nowrap">
-              Selected Works
-            </h2>
-            <div className="flex-1 h-px bg-border" />
-          </div>
+          <Reveal>
+            <div className="flex items-center gap-6 mb-6">
+              <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
+                II
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-medium whitespace-nowrap">
+                Selected Works
+              </h2>
+              <div className="flex-1 h-px bg-border line-expand" />
+            </div>
+          </Reveal>
         </div>
 
         {/* ── Spread 01 — Cityscape ── */}
@@ -69,7 +72,7 @@ export default function Home() {
               01
             </span>
           </div>
-          <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+          <Reveal className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
             <div className="group relative overflow-hidden aspect-[21/9] cursor-pointer">
               <Image
                 src="/photos/cityscape.png"
@@ -92,7 +95,7 @@ export default function Home() {
                 2026
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Séparateur */}
@@ -107,7 +110,7 @@ export default function Home() {
               02
             </span>
           </div>
-          <div className="max-w-lg mx-auto px-6 relative z-10">
+          <Reveal className="max-w-lg mx-auto px-6 relative z-10">
             <div className="group relative overflow-hidden aspect-[2/3] cursor-pointer">
               <Image
                 src="/photos/portrait.png"
@@ -130,7 +133,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Séparateur */}
@@ -147,30 +150,34 @@ export default function Home() {
           </div>
           <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-              <div className="group relative overflow-hidden aspect-[4/3] cursor-pointer">
-                <Image
-                  src="/photos/detail-shoes.png"
-                  alt="Detail shot — Urban fashion"
-                  fill
-                  className="object-cover transition-all duration-700 ease-out group-hover:brightness-90"
-                  quality={85}
-                />
-              </div>
-              <div className="flex flex-col justify-center py-8">
-                <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground leading-snug">
-                  &ldquo;Chaque image est une scène,
-                  <br className="hidden md:block" />
-                  {" chaque regard un dialogue.\u201D"}
-                </blockquote>
-                <div className="mt-6">
-                  <p className="text-sm uppercase tracking-[0.2em] font-medium">
-                    Details
-                  </p>
-                  <p className="text-muted-foreground text-xs mt-1">
-                    Close-up Series
-                  </p>
+              <Reveal direction="left">
+                <div className="group relative overflow-hidden aspect-[4/3] cursor-pointer">
+                  <Image
+                    src="/photos/detail-shoes.png"
+                    alt="Detail shot — Urban fashion"
+                    fill
+                    className="object-cover transition-all duration-700 ease-out group-hover:brightness-90"
+                    quality={85}
+                  />
                 </div>
-              </div>
+              </Reveal>
+              <Reveal direction="right" delay={200}>
+                <div className="flex flex-col justify-center py-8">
+                  <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground leading-snug">
+                    &ldquo;Chaque image est une scène,
+                    <br className="hidden md:block" />
+                    {" chaque regard un dialogue.\u201D"}
+                  </blockquote>
+                  <div className="mt-6">
+                    <p className="text-sm uppercase tracking-[0.2em] font-medium">
+                      Details
+                    </p>
+                    <p className="text-muted-foreground text-xs mt-1">
+                      Close-up Series
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -179,42 +186,43 @@ export default function Home() {
       {/* ═══ RÉALISATIONS — Galerie portfolio ═══ */}
       <section className="py-32 md:py-44 bg-card">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex items-center gap-6 mb-16">
-            <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
-              IV
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-medium whitespace-nowrap">
-              Réalisations
-            </h2>
-            <div className="flex-1 h-px bg-border" />
-          </div>
+          <Reveal>
+            <div className="flex items-center gap-6 mb-16">
+              <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
+                IV
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-medium whitespace-nowrap">
+                Réalisations
+              </h2>
+              <div className="flex-1 h-px bg-border line-expand" />
+            </div>
+          </Reveal>
         </div>
 
         {/* Masonry-style gallery */}
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4">
             {PORTFOLIO_ITEMS.map((item, i) => (
-              <div
-                key={i}
-                className="group relative mb-3 md:mb-4 break-inside-avoid overflow-hidden cursor-pointer"
-              >
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  width={600}
-                  height={800}
-                  className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-[1.03] group-hover:brightness-75"
-                  quality={80}
-                />
-                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <p className="text-white font-serif text-sm md:text-base font-medium">
-                    {item.alt}
-                  </p>
-                  <p className="text-white/60 text-[10px] uppercase tracking-[0.2em] mt-1">
-                    {item.category}
-                  </p>
+              <Reveal key={i} delay={i * 100} direction="none">
+                <div className="group relative mb-3 md:mb-4 break-inside-avoid overflow-hidden cursor-pointer">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    width={600}
+                    height={800}
+                    className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-[1.03] group-hover:brightness-75"
+                    quality={80}
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <p className="text-white font-serif text-sm md:text-base font-medium">
+                      {item.alt}
+                    </p>
+                    <p className="text-white/60 text-[10px] uppercase tracking-[0.2em] mt-1">
+                      {item.category}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -223,75 +231,80 @@ export default function Home() {
       {/* ═══ NOS SÉANCES ═══ */}
       <section id="seances" className="py-32 md:py-44">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex items-center gap-6 mb-6">
-            <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
-              V
+          <Reveal>
+            <div className="flex items-center gap-6 mb-6">
+              <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
+                V
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-medium whitespace-nowrap">
+                Nos Séances
+              </h2>
+              <div className="flex-1 h-px bg-border line-expand" />
+            </div>
+          </Reveal>
+          <Reveal delay={150}>
+            <p className="text-muted-foreground max-w-xl mb-16">
+              Chaque séance est pensée sur mesure. Choisissez la formule qui vous
+              correspond et réservez votre créneau.
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-medium whitespace-nowrap">
-              Nos Séances
-            </h2>
-            <div className="flex-1 h-px bg-border" />
-          </div>
-          <p className="text-muted-foreground max-w-xl mb-16">
-            Chaque séance est pensée sur mesure. Choisissez la formule qui vous
-            correspond et réservez votre créneau.
-          </p>
+          </Reveal>
 
           {/* Séances — layout éditorial alterné */}
           <div className="space-y-px">
             {SESSION_TYPES.map((session, i) => (
-              <Link
-                key={session.id}
-                href={`/booking?type=${session.id}`}
-                className="group grid grid-cols-1 md:grid-cols-12 items-stretch border-b border-border/50 first:border-t"
-              >
-                {/* Image — alternance gauche/droite */}
-                <div
-                  className={`relative overflow-hidden aspect-[16/10] md:aspect-auto md:col-span-5 ${
-                    i % 2 === 0 ? "md:order-1" : "md:order-2"
-                  }`}
+              <Reveal key={session.id} delay={i * 80}>
+                <Link
+                  href={`/booking?type=${session.id}`}
+                  className="group grid grid-cols-1 md:grid-cols-12 items-stretch border-b border-border/50 first:border-t"
                 >
-                  <Image
-                    src={session.image}
-                    alt={session.name}
-                    fill
-                    className="object-cover object-top transition-all duration-700 ease-out group-hover:scale-105"
-                    quality={80}
-                  />
-                </div>
+                  {/* Image — alternance gauche/droite */}
+                  <div
+                    className={`relative overflow-hidden aspect-[16/10] md:aspect-auto md:col-span-5 ${
+                      i % 2 === 0 ? "md:order-1" : "md:order-2"
+                    }`}
+                  >
+                    <Image
+                      src={session.image}
+                      alt={session.name}
+                      fill
+                      className="object-cover object-top transition-all duration-700 ease-out group-hover:scale-105"
+                      quality={80}
+                    />
+                  </div>
 
-                {/* Contenu */}
-                <div
-                  className={`md:col-span-7 flex flex-col justify-center px-6 py-8 md:px-12 md:py-16 ${
-                    i % 2 === 0 ? "md:order-2" : "md:order-1"
-                  }`}
-                >
-                  <div className="flex items-baseline gap-4 mb-4">
-                    <span className="font-serif text-5xl md:text-7xl font-light text-foreground/[0.08] leading-none">
-                      {String(i + 1).padStart(2, "0")}
+                  {/* Contenu */}
+                  <div
+                    className={`md:col-span-7 flex flex-col justify-center px-6 py-8 md:px-12 md:py-16 ${
+                      i % 2 === 0 ? "md:order-2" : "md:order-1"
+                    }`}
+                  >
+                    <div className="flex items-baseline gap-4 mb-4">
+                      <span className="font-serif text-5xl md:text-7xl font-light text-foreground/[0.08] leading-none">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="font-serif text-2xl md:text-3xl font-medium">
+                        {session.name}
+                      </h3>
+                    </div>
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-md mb-6">
+                      {session.description}
+                    </p>
+                    <div className="flex items-center gap-6 text-xs text-muted-foreground mb-6">
+                      <span className="uppercase tracking-[0.15em]">
+                        {session.duration}
+                      </span>
+                      <span className="w-px h-3 bg-border" />
+                      <span>à partir de {session.price}</span>
+                    </div>
+                    <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] group-hover:text-primary transition-colors duration-300">
+                      Réserver
+                      <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">
+                        &rarr;
+                      </span>
                     </span>
-                    <h3 className="font-serif text-2xl md:text-3xl font-medium">
-                      {session.name}
-                    </h3>
                   </div>
-                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-md mb-6">
-                    {session.description}
-                  </p>
-                  <div className="flex items-center gap-6 text-xs text-muted-foreground mb-6">
-                    <span className="uppercase tracking-[0.15em]">
-                      {session.duration}
-                    </span>
-                    <span className="w-px h-3 bg-border" />
-                    <span>à partir de {session.price}</span>
-                  </div>
-                  <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] group-hover:text-primary transition-colors duration-300">
-                    Réserver
-                    <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">
-                      &rarr;
-                    </span>
-                  </span>
-                </div>
-              </Link>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -300,64 +313,74 @@ export default function Home() {
       {/* ═══ ABOUT ═══ */}
       <section id="about" className="py-32 md:py-44 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
-          <div>
-            <div className="flex items-center gap-4 mb-8">
-              <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
-                VI
+          <Reveal direction="left">
+            <div>
+              <div className="flex items-center gap-4 mb-8">
+                <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
+                  VI
+                </p>
+                <div className="w-12 h-px bg-border" />
+                <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
+                  About
+                </p>
+              </div>
+              <h2 className="font-serif text-3xl md:text-4xl leading-snug mb-8 font-medium">
+                {"L'oeil derrière"}
+                <br />
+                {"l'objectif"}
+              </h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Photographe basé en région parisienne, spécialisé dans le portrait
+                urbain et la photographie de rue. Chaque cliché capture un instant,
+                une émotion, une histoire qui mérite d&apos;être racontée.
               </p>
-              <div className="w-12 h-px bg-border" />
-              <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
-                About
+              <p className="text-muted-foreground leading-relaxed">
+                Mon approche cinématographique mêle lumière naturelle, compositions
+                soignées et une colorimétrie travaillée pour créer des images qui
+                transcendent le réel.
               </p>
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl leading-snug mb-8 font-medium">
-              {"L'oeil derrière"}
-              <br />
-              {"l'objectif"}
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Photographe basé en région parisienne, spécialisé dans le portrait
-              urbain et la photographie de rue. Chaque cliché capture un instant,
-              une émotion, une histoire qui mérite d&apos;être racontée.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Mon approche cinématographique mêle lumière naturelle, compositions
-              soignées et une colorimétrie travaillée pour créer des images qui
-              transcendent le réel.
-            </p>
-          </div>
-          <div className="relative aspect-square overflow-hidden">
-            <Image
-              src="/photos/portrait.png"
-              alt="Self-portrait"
-              fill
-              className="object-cover object-[center_20%] grayscale hover:grayscale-0 transition-all duration-1000 ease-out"
-              quality={85}
-            />
-          </div>
+          </Reveal>
+          <Reveal direction="right" delay={200}>
+            <div className="relative aspect-square overflow-hidden">
+              <Image
+                src="/photos/portrait.png"
+                alt="Self-portrait"
+                fill
+                className="object-cover object-[center_20%] grayscale hover:grayscale-0 transition-all duration-1000 ease-out"
+                quality={85}
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ═══ CONTACT ═══ */}
       <section id="contact" className="py-32 md:py-44 px-6 md:px-12">
         <div className="max-w-7xl mx-auto text-center">
-          <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground mb-6">
-            VI — Contact
-          </p>
-          <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl font-semibold mb-10 leading-tight">
-            Travaillons
-            <br />
-            ensemble
-          </h2>
-          <a
-            href="mailto:hello@madvisual.com"
-            className="inline-flex items-center gap-3 text-lg border-b border-foreground/30 pb-1 hover:border-primary hover:text-primary transition-colors duration-300 group"
-          >
-            hello@madvisual.com
-            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-              &rarr;
-            </span>
-          </a>
+          <Reveal direction="none">
+            <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground mb-6">
+              VI — Contact
+            </p>
+          </Reveal>
+          <Reveal delay={150}>
+            <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl font-semibold mb-10 leading-tight">
+              Travaillons
+              <br />
+              ensemble
+            </h2>
+          </Reveal>
+          <Reveal delay={300}>
+            <a
+              href="mailto:hello@madvisual.com"
+              className="inline-flex items-center gap-3 text-lg border-b border-foreground/30 pb-1 hover:border-primary hover:text-primary transition-colors duration-300 group"
+            >
+              hello@madvisual.com
+              <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                &rarr;
+              </span>
+            </a>
+          </Reveal>
         </div>
       </section>
 
