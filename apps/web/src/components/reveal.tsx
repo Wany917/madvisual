@@ -23,6 +23,12 @@ export default function Reveal({
     const el = ref.current;
     if (!el) return;
 
+    // If user prefers reduced motion, show immediately
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.classList.add("is-visible");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
@@ -31,10 +37,14 @@ export default function Reveal({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px -20px 0px" }
     );
 
-    observer.observe(el);
+    // Small delay to let layout settle, then observe
+    requestAnimationFrame(() => {
+      observer.observe(el);
+    });
+
     return () => observer.disconnect();
   }, [delay]);
 
